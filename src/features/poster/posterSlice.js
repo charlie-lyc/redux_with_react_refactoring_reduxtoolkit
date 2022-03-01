@@ -56,7 +56,7 @@ export const posterSlice = createSlice({
 
 // export const { someAction } = posterSlice.actions
 
-export const selectPosts = state => state.poster.items
+export const selectPosts = state => state.poster.items // <- The name of the reducer from store.js
 export const selectPost = state => state.poster.item
 
 export default posterSlice.reducer
