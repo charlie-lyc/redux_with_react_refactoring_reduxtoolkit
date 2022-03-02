@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import { fetchPosts, createPost } from './posterAPI'
+import { fetchPosts, createPost } from './postAPI'
 
 
 const initialState = {
@@ -27,8 +27,8 @@ export const createPostAsync = createAsyncThunk(
     }
 )
 
-export const posterSlice = createSlice({
-    name: 'poster',
+export const postSlice = createSlice({
+    name: 'post_slice',
     initialState,
     reducers: {
         // someAction: (state, action) => {
@@ -47,16 +47,14 @@ export const posterSlice = createSlice({
             }).addCase(createPostAsync.fulfilled, (state, action) => {
                 state.status = 'idle'
                 state.item = action.payload
-                // state.items.unshift(action.payload)
-                /* OR */
-                state.items = [ action.payload, ...state.items ]
+                // Is this the best way???
+                state.items = [ action.payload, ...state.items] // ???
             })  
     }
 })
 
-// export const { someAction } = posterSlice.actions
+// export const { someAction } = postSlice.actions
 
-export const selectPosts = state => state.poster.items // <- The name of the reducer from store.js
-export const selectPost = state => state.poster.item
+export const selectPosts = state => state.post.items // <- The name of the reducer from store.js
 
-export default posterSlice.reducer
+export default postSlice.reducer
