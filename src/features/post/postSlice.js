@@ -31,8 +31,8 @@ export const postSlice = createSlice({
     name: 'post_slice',
     initialState,
     reducers: {
-        // someAction: (state, action) => {
-        //     state.some = action.payload
+        // addItem: state => {
+        //     state.items = [ state.item, ...state.items ]
         // },
     },
     extraReducers: builder => {
@@ -53,8 +53,17 @@ export const postSlice = createSlice({
     }
 })
 
-// export const { someAction } = postSlice.actions
+// const { addItem } = postSlice.actions
 
 export const selectPosts = state => state.post.items // <- The name of the reducer from store.js
+
+// const selectPost = state => state.post.item
+// export const addPost = () => (dispatch, getState) => {
+//     const post = selectPost(getState())
+//     console.log(post)
+//     if (!post) {
+//         dispatch(addItem())
+//     }
+// }
 
 export default postSlice.reducer

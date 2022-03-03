@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import PostForm from './PostForm'
 // import PropTypes from 'prop-types'
 
