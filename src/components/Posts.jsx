@@ -4,7 +4,7 @@ import PostItem from './PostItem'
 // import PropTypes from 'prop-types'
 /////////////////////////////////////////////////////////////////////////////
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchPostsAsync, selectPosts } from '../features/post/postSlice'
+import { fetchPostsAsync, selectPosts } from '../features/posts/postsSlice'
 
 
 // const Posts = ({ posts }) => {
@@ -37,12 +37,11 @@ import { fetchPostsAsync, selectPosts } from '../features/post/postSlice'
  */
 const Posts = () => {
     const dispatch = useDispatch()
-
+    const posts = useSelector(selectPosts)
+    
     useEffect(() => {
         dispatch(fetchPostsAsync())
     }, [ dispatch ])
-
-    const posts = useSelector(selectPosts)
 
     let postItems
     if (!posts || posts.length === 0) {

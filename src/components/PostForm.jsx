@@ -1,9 +1,9 @@
 // import React from 'react' 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 // import PropTypes from 'prop-types'
 ////////////////////////////////////////////////////////////////////////////
-import { useDispatch } from 'react-redux'
-import { createPostAsync } from '../features/post/postSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { createPostAsync, reset, selectStatus } from '../features/posts/postsSlice'
 
 
 // const PostForm = ({ addPost }) => {
@@ -63,6 +63,14 @@ const PostForm = () => {
         title: '',
         body: ''
     })
+    const dispatch = useDispatch()
+    const status = useSelector(selectStatus)
+
+    useEffect(() => {
+        if (status === 'succeeded' || status === 'failed') {
+            dispatch(reset())
+        }
+    }, [ status, dispatch ])
 
     const handleChange = e => {
         setPost(prevState => ({
@@ -70,8 +78,6 @@ const PostForm = () => {
             [e.target.name]: e.target.value
         }))
     }
-
-    const dispatch = useDispatch()
 
     const handleSubmit = e => {
         e.preventDefault()
